@@ -59,7 +59,7 @@ public class SegundaParteMultasController implements Initializable {
 
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-    MultasDao multasDao;
+    private MultasDao multasDao;
 
     public SegundaParteMultasController() {
         this.multasDao = new MultasDao();

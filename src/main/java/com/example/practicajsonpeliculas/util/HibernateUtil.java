@@ -12,7 +12,6 @@ public class HibernateUtil {
 	static {
 		Configuration cfg = new Configuration();
 		cfg.configure("configuration/hibernate.cfg.xml");
-		// Se registran las clases que hay que MAPEAR con cada tabla de la base de datos
 		cfg.addAnnotatedClass(Multas.class);
 
 		factory = cfg.buildSessionFactory();
@@ -25,6 +24,4 @@ public class HibernateUtil {
 	public static Session getSession() {
 		return factory.openSession();
 	}
-	
-	
 }

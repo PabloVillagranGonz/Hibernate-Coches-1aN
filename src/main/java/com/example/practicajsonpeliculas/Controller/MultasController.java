@@ -1,9 +1,8 @@
 package com.example.practicajsonpeliculas.Controller;
+import com.example.practicajsonpeliculas.App;
 import com.example.practicajsonpeliculas.DAO.CochesDao;
-import com.example.practicajsonpeliculas.DAO.MultasDao;
 import com.example.practicajsonpeliculas.modelo.Coche;
 
-import com.example.practicajsonpeliculas.modelo.Multas;
 import com.example.practicajsonpeliculas.util.HibernateUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.jboss.jandex.Main;
 
 import java.net.URL;
 import java.util.List;
@@ -178,7 +176,7 @@ public class MultasController implements Initializable {
 
         if (cocheSeleccionado != null) {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/practicajsonpeliculas/multas2.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("multas2.fxml"));
                 Parent root = fxmlLoader.load();
                 SegundaParteMultasController controller = fxmlLoader.getController();
                 controller.cargarMultasPorCoche(cocheSeleccionado.getMatricula());
@@ -198,6 +196,18 @@ public class MultasController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Selecciona un coche para ver sus multas.");
             alert.showAndWait();
+        }
+    }
+
+    public void onClickedMouse(javafx.scene.input.MouseEvent mouseEvent) {
+        Coche coche = idTablaCoches.getSelectionModel().getSelectedItem();
+        if (coche != null) {
+            txtMatricula.setText(coche.getMatricula());
+            txtModelo.setText(coche.getModelo());
+            txtMarca.setText(coche.getMarca());
+            fxTipo.getSelectionModel().select(coche.getTipo());
+        } else {
+            System.out.println("No se ha seleccionado ningún coche.");
         }
     }
 
@@ -222,18 +232,6 @@ public class MultasController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Error al cargar los coches: " + e.getMessage());
             alert.showAndWait();
-        }
-    }
-
-    public void onClickedMouse(javafx.scene.input.MouseEvent mouseEvent) {
-        Coche coche = idTablaCoches.getSelectionModel().getSelectedItem();
-        if (coche != null) {
-            txtMatricula.setText(coche.getMatricula());
-            txtModelo.setText(coche.getModelo());
-            txtMarca.setText(coche.getMarca());
-            fxTipo.getSelectionModel().select(coche.getTipo());
-        } else {
-            System.out.println("No se ha seleccionado ningún coche.");
         }
     }
 }

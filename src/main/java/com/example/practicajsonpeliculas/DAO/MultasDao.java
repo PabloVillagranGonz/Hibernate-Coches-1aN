@@ -1,7 +1,5 @@
 package com.example.practicajsonpeliculas.DAO;
 
-import com.example.practicajsonpeliculas.Controller.MultasController;
-import com.example.practicajsonpeliculas.modelo.Coche;
 import com.example.practicajsonpeliculas.modelo.Multas;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

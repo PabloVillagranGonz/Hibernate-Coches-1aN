@@ -37,7 +37,7 @@ public class CochesDao {
         }
     }
 
-    public void updateCoche(Coche coche, Session session)   {
+    public void updateCoche(Coche coche, Session session) {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
