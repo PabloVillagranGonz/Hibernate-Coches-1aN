@@ -1,18 +1,24 @@
 package com.example.practicajsonpeliculas.Controller;
 
+import com.example.practicajsonpeliculas.App;
 import com.example.practicajsonpeliculas.DAO.MultasDao;
 import com.example.practicajsonpeliculas.modelo.Coche;
 import com.example.practicajsonpeliculas.modelo.Multas;
 import com.example.practicajsonpeliculas.util.HibernateUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,6 +26,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SegundaParteMultasController implements Initializable {
+
+    @FXML
+    private Button btnAtras;
 
     @FXML
     private Button btnIActualizar;
@@ -57,16 +66,15 @@ public class SegundaParteMultasController implements Initializable {
     @FXML
     private TextField txtPrecio;
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-    private MultasDao multasDao;
+    private final MultasDao multasDao;
 
     public SegundaParteMultasController() {
         this.multasDao = new MultasDao();
     }
 
     private void limpiarCampos() {
-        txtMatricula.clear();
         txtPrecio.clear();
         txtDate.setValue(null);
         txtIdentificador.clear();
@@ -183,6 +191,7 @@ public class SegundaParteMultasController implements Initializable {
 
     public void cargarMultasPorCoche(String matricula) {
         try(Session session = sessionFactory.openSession()) {
+            txtMatricula.setText(matricula);
             List<Multas> listaMultas = session.createQuery("FROM Multas WHERE matricula = :matricula", Multas.class)
                     .setParameter("matricula", matricula)
                     .list();
@@ -194,6 +203,21 @@ public class SegundaParteMultasController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Error al cargar las multas: " + e.getMessage());
             alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void onClickAtras(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("multas.fxml"));
+            Parent root = fxmlLoader.load();
+            MultasController controller = fxmlLoader.getController();
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) btnAtras.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

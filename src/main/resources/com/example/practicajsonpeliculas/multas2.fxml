@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="502.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.practicajsonpeliculas.Controller.SegundaParteMultasController">
+<AnchorPane prefHeight="502.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.practicajsonpeliculas.Controller.SegundaParteMultasController">
    <children>
       <Button fx:id="btnInsertar" layoutX="60.0" layoutY="251.0" mnemonicParsing="false" onAction="#onClicInsertar" prefHeight="26.0" prefWidth="93.0" text="INSERTAR" />
       <Label layoutX="60.0" layoutY="76.0" text="Matricula" />
@@ -21,7 +21,7 @@
       <DatePicker fx:id="txtDate" layoutX="181.0" layoutY="192.0" />
       <Button fx:id="btnIActualizar" layoutX="181.0" layoutY="251.0" mnemonicParsing="false" onAction="#onClicActualizar" prefHeight="26.0" prefWidth="93.0" text="ACTUALIZAR" />
       <Button fx:id="btnIBorrar" layoutX="294.0" layoutY="251.0" mnemonicParsing="false" onAction="#onClicBorrar" prefHeight="26.0" prefWidth="93.0" text="BORRAR" />
-      <Button fx:id="btnLimpiar" layoutX="413.0" layoutY="251.0" mnemonicParsing="false" onAction="#onClicLimpiar" prefHeight="26.0" prefWidth="93.0" text="LIMPIAR" />
+      <Button fx:id="btnLimpiar" layoutX="422.0" layoutY="251.0" mnemonicParsing="false" onAction="#onClicLimpiar" prefHeight="26.0" prefWidth="93.0" text="LIMPIAR" />
       <TableView fx:id="idTablaMultas" layoutX="114.0" layoutY="288.0" onMouseClicked="#onClickedMouse" prefHeight="200.0" prefWidth="320.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="75.0" text="ID MULTA" />
@@ -29,5 +29,6 @@
             <TableColumn fx:id="colFecha" prefWidth="121.0" text="FECHA" />
         </columns>
       </TableView>
+      <Button fx:id="btnAtras" layoutX="422.0" layoutY="152.0" mnemonicParsing="false" onAction="#onClickAtras" prefHeight="26.0" prefWidth="93.0" text="ATRAS" />
    </children>
 </AnchorPane>
